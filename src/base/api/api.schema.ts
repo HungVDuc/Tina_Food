@@ -1,6 +1,6 @@
 export const defaultPayload = {
   success: true,
-  status: 200,
+  statusCode: 200,
   statusText: 'SUCCESS',
   errorCode: '000000',
   message: '',
@@ -20,9 +20,9 @@ export class PaginatedMeta {
   constructor(query: Record<string, any>, partial: PaginatedMeta) {
     Object.assign(this, {
       ...partial,
-      pageSize: query.limit,
-      currentPage: query.page,
-      totalPages: Math.ceil(Number(partial.total) / Number(query.limit)),
+      pageSize: query.limit ?? 50,
+      currentPage: query.page ?? 1,
+      totalPages: Math.ceil(Number(partial.totalItem) / (Number(query.limit) || 50)),
     });
   }
 }

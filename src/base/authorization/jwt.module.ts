@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { JwtAuthService } from './jwt.service';
 import { JwtStrategy } from './jwt.strategy';
+import { UserModule } from 'src/module/user/user.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { JwtStrategy } from './jwt.strategy';
           signOptions: { expiresIn: config.get<string>('ACCESS_TOKEN_EXP') || '1h' },
         }) as JwtModuleOptions,
     }),
+    UserModule,
   ],
   providers: [JwtAuthService, JwtStrategy],
   exports: [JwtAuthService],

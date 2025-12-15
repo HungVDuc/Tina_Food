@@ -25,8 +25,9 @@ export class BaseListSerive<TDoc extends Document> extends BaseGenericService<TD
     const total = await this.model.countDocuments(filter);
     let data: TDoc[] = await this.model.find(filter, projection, options);
     data = await this.postFindAll(data, query, extraOptions);
-    return new PaginatedResult(data, query, { total });
+    return new PaginatedResult(data, query, { totalItem: total });
   }
+
   /* Helper */
   protected async preFindAll(query?: QuerySpecificationDto, extraOptions?: IExtraOptions) {
     return {
