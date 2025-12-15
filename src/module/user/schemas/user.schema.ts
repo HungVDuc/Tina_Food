@@ -18,6 +18,9 @@ export class User {
   @Prop({ required: false, type: String })
   avatarPath?: string;
 
+  @Prop({ required: false, type: String })
+  backgroundImg?: string;
+
   @Prop({ required: true, enum: UserRole, default: UserRole.USER })
   role: UserRole;
 

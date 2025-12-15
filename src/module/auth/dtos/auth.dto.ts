@@ -1,38 +1,12 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { PickType } from '@nestjs/swagger';
+import { User as UserDto } from 'src/module/user/dtos/user.dto';
 
-class AuthDto {
-  @ApiProperty({
-    example: 'hungvd',
-    description: 'Tên tài khoản',
-  })
-  @IsString()
-  userName: string;
+export class LoginDto extends PickType(UserDto, ['userName', 'password']) {}
 
-  @ApiProperty({
-    example: '123456',
-    description: 'Mật khẩu người dùng',
-  })
-  @IsString()
-  password: string;
-}
-
-export class LoginDto extends AuthDto {}
-
-export class RegisterDto extends AuthDto {
-  @ApiPropertyOptional({
-    example: 'hung.vd1',
-    description: 'Tên hiển thị',
-  })
-  @IsOptional()
-  @IsString()
-  nameDisplay?: string;
-
-  @ApiPropertyOptional({
-    example: 'http://avatar.png',
-    description: 'Link ảnh',
-  })
-  @IsOptional()
-  @IsString()
-  avatarPath?: string;
-}
+export class RegisterDto extends PickType(UserDto, [
+  'userName',
+  'password',
+  'nameDisplay',
+  'avatarPath',
+  'backgroundImg',
+]) {}
