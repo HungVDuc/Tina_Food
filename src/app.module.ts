@@ -7,6 +7,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseTransformInterceptor } from './base/middleware/response.interceptor';
 import { MenuModule } from './module/menu/menu.module';
 import { RoleGuard } from './base/authorization/role/role.guard';
+import { MinioModule } from './base/minio/minio.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { RoleGuard } from './base/authorization/role/role.guard';
       isGlobal: true,
     }),
     MongoModule,
+    MinioModule,
     UserModule,
     AuthModule,
     MenuModule,

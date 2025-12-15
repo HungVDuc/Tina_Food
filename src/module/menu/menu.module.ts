@@ -9,6 +9,7 @@ import { UserDishController } from './controllers/user-dish.controller';
 import { MenuOrder, MenuOrderSchema } from './schemas/menu-order.schema';
 import { MenuOrderService } from './services/menu-order.service';
 import { UserMenuOrderController } from './controllers/user-menu-order.controller';
+import { UserImageController } from './controllers/user-image.controller';
 
 @Module({
   imports: [
@@ -18,7 +19,12 @@ import { UserMenuOrderController } from './controllers/user-menu-order.controlle
       { name: MenuOrder.name, schema: MenuOrderSchema },
     ]),
   ],
-  controllers: [UserMenuController, UserDishController, UserMenuOrderController],
+  controllers: [
+    UserMenuController,
+    UserDishController,
+    UserMenuOrderController,
+    UserImageController,
+  ],
   providers: [MenuService, DishService, MenuOrderService],
 })
 export class MenuModule {}
