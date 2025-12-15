@@ -14,6 +14,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { TransformSort } from 'src/base/validators/validator.transformer';
 
 // PAGINATION
 class PaginationSpecificationDto {
@@ -21,13 +22,13 @@ class PaginationSpecificationDto {
   @IsInt()
   @IsPositive()
   @Type(() => Number)
-  limit?: number = 50;
+  limit?: number;
 
   @IsOptional()
   @IsInt()
   @IsPositive()
   @Type(() => Number)
-  page?: number = 1;
+  page?: number;
 }
 
 export class PaginationDto extends PaginationSpecificationDto {
@@ -84,6 +85,7 @@ export interface IFactoryOption {
 export const factoryQueryDto = <TFilter>(options: IFactoryOption): FactoryType<TFilter> => {
   class Factory {
     @IsNotEmpty()
+    @TransformSort(options.sortFields)
     @IsObject()
     sort?: Record<string, any>;
 

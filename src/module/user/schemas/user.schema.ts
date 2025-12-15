@@ -4,6 +4,8 @@ import { UserRole, UserStatus } from '../enums/user.enum';
 
 @Schema({ timestamps: true })
 export class User {
+  id: string;
+
   @Prop({ required: false, type: String })
   nameDisplay?: string;
 
